@@ -1,14 +1,14 @@
 class SessionsController < ApplicationController
-    layout "login"
-  
+    layout 'login'
+
     def new
-      #redirect_to dashboard_path if logged_in?
+      redirect_to dashboard_path if logged_in?
     end    
     
-    def create
+    def create      
       user = User.find_by(email: params[:session][:email].downcase)
       if user && user.authenticate(params[:session][:password])
-        log_in(user)
+        log_in(user)        
         redirect_to dashboard_path
       else
         flash.now[:danger] = "Email ou senha inválidos"
