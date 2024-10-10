@@ -2,11 +2,11 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%= dashboard_path %>">
         <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+            <i class="fas fa-landmark"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">CONTROLE FINANCEIRO </div>
     </a>
 
     <!-- Divider -->
@@ -14,9 +14,9 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
+        <a class="nav-link" href="<%= dashboard_path %>">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Dashboard</span></a>
     </li>
 
     <!-- Divider -->
@@ -98,12 +98,22 @@
             <span>Charts</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
+    <!-- Botão Contas -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+      <a class="nav-link" href="<%= conta_path %>">
+        <i class="fas fa-fw fa-dollar-sign"></i>
+        <span>Contas a Pagar</span>
+      </a>
     </li>
+
+    <!-- Logout -->
+    <li class="nav-item">
+    <%= link_to logout_path, method: :delete, class: "nav-link", data: { confirm: "Você tem certeza que deseja sair?" }, title: "Logout" do %>
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+    <% end %>
+    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

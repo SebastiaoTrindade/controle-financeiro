@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+    
   # Sessão login
   root 'sessions#new'
   get 'login', to: 'sessions#new'
@@ -8,4 +8,7 @@ Rails.application.routes.draw do
 
   # Sessão Dashboard
   get 'dashboard', to: 'dashboard#index'
+
+  # Sessão Contas
+  resources :conta
 end
