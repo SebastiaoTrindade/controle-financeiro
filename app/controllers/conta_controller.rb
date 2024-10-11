@@ -1,6 +1,6 @@
 class ContaController < ApplicationController
   before_action :set_contum, only: %i[ show edit update destroy ]
-  layout 'dashboard'
+  layout 'dashboard_yeld'
 
   # GET /conta or /conta.json
   def index
@@ -26,7 +26,7 @@ class ContaController < ApplicationController
 
     respond_to do |format|
       if @contum.save
-        format.html { redirect_to @contum, notice: "Contum was successfully created." }
+        format.html { redirect_to @contum, notice: "Conta cadastrada com sucesso!" }
         format.json { render :show, status: :created, location: @contum }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class ContaController < ApplicationController
   def update
     respond_to do |format|
       if @contum.update(contum_params)
-        format.html { redirect_to @contum, notice: "Contum was successfully updated." }
+        format.html { redirect_to @contum, notice: "Conta atualizada com sucesso!" }
         format.json { render :show, status: :ok, location: @contum }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,7 +53,7 @@ class ContaController < ApplicationController
     @contum.destroy
 
     respond_to do |format|
-      format.html { redirect_to conta_path, status: :see_other, notice: "Contum was successfully destroyed." }
+      format.html { redirect_to conta_path, status: :see_other, notice: "Conta excluída com sucesso!" }
       format.json { head :no_content }
     end
   end

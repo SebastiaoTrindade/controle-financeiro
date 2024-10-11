@@ -1,15 +1,18 @@
-<p id="notice"><%= notice %></p>
+<% if notice.present? %>
+  <p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
 
-<h1>Conta</h1>
 
-<table>
-  <thead>
+<h1 class="mt-4">Lista de Contas</h1>
+
+<table class="table table-hover table-bordered">
+  <thead class="table-light">
     <tr>
       <th>Nome</th>
       <th>Valor</th>
-      <th>Data vencimento</th>
+      <th>Data de Vencimento</th>
       <th>Status</th>
-      <th colspan="3"></th>
+      <th class="text-center" colspan="3">Ações</th>
     </tr>
   </thead>
 
@@ -17,17 +20,41 @@
     <% @conta.each do |contum| %>
       <tr>
         <td><%= contum.nome %></td>
-        <td><%= contum.valor %></td>
-        <td><%= contum.data_vencimento %></td>
-        <td><%= contum.status %></td>
-        <td><%= link_to 'Show', contum %></td>
-        <td><%= link_to 'Edit', edit_contum_path(contum) %></td>
-        <td><%= link_to 'Destroy', contum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= number_to_currency(contum.valor) %></td>
+        <td><%= contum.data_vencimento.strftime("%d/%m/%Y") if contum.data_vencimento %></td>
+        <td>
+          <span class="badge
+            <%= 
+              case contum.status
+              when 'pago' 
+                'bg-success' # Verde
+              when 'pendente' 
+                'bg-warning'  # Amarelo
+              when 'atrasado' 
+                'bg-danger'   # Vermelho
+              else 
+                'bg-secondary' # Cor padrão (se necessário)
+              end 
+            %>
+            text-white" style="font-size: 0.9em; padding: 0.5em 1em;">
+            <%= contum.status.capitalize %> 
+          </span>
+        </td>
+
+        <td class="text-center">
+          <%= link_to 'Visualizar', contum, class: 'btn btn-info btn-sm' %>
+        </td>
+        <td class="text-center">
+          <%= link_to 'Editar', edit_contum_path(contum), class: 'btn btn-success btn-sm' %>
+        </td>
+        <td class="text-center">
+          <%= link_to 'Excluir', contum, method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger btn-sm' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Contum', new_contum_path %>
+<div class="mt-4">
+  <%= link_to 'Nova Conta', new_contum_path, class: 'btn btn-primary' %>
+</div>

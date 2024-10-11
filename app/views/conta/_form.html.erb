@@ -1,37 +1,38 @@
-<%= form_with(model: contum, local: true) do |form| %>
+<%= form_with(model: contum, local: true, class: "mt-4") do |form| %>
   <% if contum.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(contum.errors.count, "error") %> prohibited this contum from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-danger">
+      <h4><%= pluralize(contum.errors.count, "erro") %> impediram o salvamento desta conta:</h4>
       <ul>
-      <% contum.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% contum.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :nome %>
-    <%= form.text_field :nome %>
+  <div class="form-group">
+    <%= form.label :nome, class: 'form-label' %>
+    <%= form.text_field :nome, class: 'form-control', placeholder: 'Digite o nome da conta' %>
   </div>
 
-  <div class="field">
-    <%= form.label :valor %>
-    <%= form.text_field :valor %>
+  <div class="form-group">
+    <%= form.label :valor, class: 'form-label' %>
+    <%= form.text_field :valor, class: 'form-control', placeholder: 'Digite o valor' %>
   </div>
 
-  <div class="field">
-    <%= form.label :data_vencimento %>
-    <%= form.date_select :data_vencimento %>
+  <div class="form-group">
+    <%= form.label :data_vencimento, class: 'form-label' %>
+    <%= form.date_select :data_vencimento, order: [:day, :month, :year], class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
+  <div class="form-group">
+  <%= form.label :status, class: 'form-label' %>
+  <%= form.select :status, options_for_select([['Pendente', 'pendente'], ['Pago', 'pago'], ['Atrasado', 'atrasado']], selected: contum.status), { prompt: 'Selecione o status' }, class: 'form-control', id: 'status-select' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group mt-3">
+    <%= form.submit 'Salvar Conta', class: 'btn btn-primary' %>
+    <%= link_to 'Cancelar', conta_path, class: 'btn btn-secondary' %>
   </div>
 <% end %>
+
