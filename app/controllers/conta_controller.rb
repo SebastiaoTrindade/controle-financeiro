@@ -4,8 +4,8 @@ class ContaController < ApplicationController
 
   # GET /conta or /conta.json
   def index
-    @conta = Contum.all
-  end
+    @contas = Contum.paginate(page: params[:page], per_page: 2)
+  end  
 
   # GET /conta/1 or /conta/1.json
   def show

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
     include SessionsHelper
     before_action :logged_in_user
-
+    
     private
 
     def logged_in_user
@@ -10,4 +10,5 @@ class ApplicationController < ActionController::Base
             redirect_to login_url unless request.path == login_path
         end
     end
+   
 end

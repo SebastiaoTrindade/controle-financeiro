@@ -1,0 +1,29 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  list-style: none; /* Remover bolinhas da lista */
+}
+
+.page-item {
+  margin: 0 5px; /* Espaço entre os itens da página */
+}
+
+.page-link {
+  color: #007bff; /* Cor do texto */
+  text-decoration: none; /* Remove sublinhado */
+  padding: 0.5rem 0.75rem; /* Espaçamento interno */
+  border: 1px solid #dee2e6; /* Borda padrão */
+  border-radius: 0.25rem; /* Bordas arredondadas */
+}
+
+.page-link:hover {
+  background-color: #007bff; /* Cor de fundo ao passar o mouse */
+  color: white; /* Cor do texto ao passar o mouse */
+}
+
+.page-item.active .page-link {
+  background-color: #007bff; /* Cor de fundo para o item ativo */
+  color: white; /* Cor do texto para o item ativo */
+  border-color: #007bff; /* Borda do item ativo */
+}

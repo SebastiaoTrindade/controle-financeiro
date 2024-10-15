@@ -14,3 +14,5 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 Rails.application.config.assets.precompile += %w( sb-admin-2.css sb-admin-2.js bootstrap.min.css bootstrap.bundle.min.js jquery.min.js )
+
+Rails.application.config.assets.precompile += %w( paginacao.css )
