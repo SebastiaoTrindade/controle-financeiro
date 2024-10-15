@@ -23,11 +23,11 @@ class ContaController < ApplicationController
   # POST /conta or /conta.json
   def create
     @contum = Contum.new(contum_params)
-
+    
     respond_to do |format|
       if @contum.save
-        format.html { redirect_to @contum, notice: "Conta cadastrada com sucesso!" }
-        format.json { render :show, status: :created, location: @contum }
+        format.html { redirect_to conta_index_path, notice: "Conta cadastrada com sucesso!" }
+        format.json { render :index, status: :created, location: @contum }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @contum.errors, status: :unprocessable_entity }
@@ -39,8 +39,8 @@ class ContaController < ApplicationController
   def update
     respond_to do |format|
       if @contum.update(contum_params)
-        format.html { redirect_to @contum, notice: "Conta atualizada com sucesso!" }
-        format.json { render :show, status: :ok, location: @contum }
+        format.html { redirect_to conta_path, notice: "Conta atualizada com sucesso!" }
+        format.json { render :index, status: :ok, location: @contum }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @contum.errors, status: :unprocessable_entity }
