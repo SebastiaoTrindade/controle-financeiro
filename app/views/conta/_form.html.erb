@@ -1,33 +1,35 @@
 <%= form_with(model: contum, local: true, class: "mt-4") do |form| %>
-  <% if contum.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h4><%= pluralize(contum.errors.count, "erro") %> impediram o salvamento desta conta:</h4>
-      <ul>
-        <% contum.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="form-group">
     <%= form.label :nome, class: 'form-label' %>
     <%= form.text_field :nome, class: 'form-control', placeholder: 'Digite o nome da conta' %>
+    <% if contum.errors[:nome].any? %>
+      <div class="alert alert-warning mt-2"><%= contum.errors[:nome].join(", ") %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :valor, class: 'form-label' %>
     <%= form.text_field :valor, class: 'form-control', placeholder: 'Digite o valor' %>
+    <% if contum.errors[:valor].any? %>
+      <div class="alert alert-warning mt-2"><%= contum.errors[:valor].join(", ") %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
     <%= form.label :data_vencimento, class: 'form-label' %>
-    <%= form.text_field :data_vencimento, class: 'form-control datepicker', placeholder: 'Selecione a data' %>
+    <%= form.date_field :data_vencimento, class: 'form-control', placeholder: 'Selecione a data' %>
+    <% if contum.errors[:data_vencimento].any? %>
+      <div class="alert alert-warning mt-2"><%= contum.errors[:data_vencimento].join(", ") %></div>
+    <% end %>
   </div>
 
   <div class="form-group">
-  <%= form.label :status, class: 'form-label' %>
-  <%= form.select :status, options_for_select([['Pendente', 'pendente'], ['Pago', 'pago'], ['Atrasado', 'atrasado']], selected: contum.status), { prompt: 'Selecione o status' }, class: 'form-control', id: 'status-select' %>
+    <%= form.label :status, class: 'form-label' %>
+    <%= form.select :status, options_for_select([['Pendente', 'pendente'], ['Pago', 'pago'], ['Atrasado', 'atrasado']], selected: contum.status), { prompt: 'Selecione o status' }, class: 'form-control' %>
+    <% if contum.errors[:status].any? %>
+      <div class="alert alert-warning mt-2"><%= contum.errors[:status].join(", ") %></div>
+    <% end %>
   </div>
 
   <div class="form-group mt-3">
@@ -35,4 +37,3 @@
     <%= link_to 'Cancelar', conta_path, class: 'btn btn-secondary' %>
   </div>
 <% end %>
-
