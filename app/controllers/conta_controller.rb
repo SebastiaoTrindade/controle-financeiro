@@ -4,7 +4,7 @@ class ContaController < ApplicationController
 
   # GET /conta or /conta.json
   def index
-    @contas = Contum.paginate(page: params[:page], per_page: 2)
+    @contas = Contum.paginate(page: params[:page], per_page: 3)
   end  
 
   # GET /conta/1 or /conta/1.json
@@ -26,7 +26,7 @@ class ContaController < ApplicationController
     
     respond_to do |format|
       if @contum.save
-        format.html { redirect_to conta_index_path, notice: "Conta cadastrada com sucesso!" }
+        format.html { redirect_to conta_path, notice: "Conta cadastrada com sucesso!" }
         format.json { render :index, status: :created, location: @contum }
       else
         format.html { render :new, status: :unprocessable_entity }
